@@ -1,4 +1,4 @@
-const { Schema, Model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const commentSchema = new Schema({
     userId: {
@@ -14,4 +14,4 @@ const commentSchema = new Schema({
     comment: String,
 });
 
-module.exports.Comment = new Model('Comment', commentSchema); 
+module.exports.Comment = new model('Comment', commentSchema); 
