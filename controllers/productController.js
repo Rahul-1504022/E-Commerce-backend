@@ -4,6 +4,7 @@ const formidable = require('formidable');
 const fs = require('fs');
 const { expression } = require('joi');
 const { emitWarning } = require('process');
+const { Comment } = require('../models/comments');
 
 module.exports.createProduct = async (req, res) => {
     let form = new formidable.IncomingForm();
@@ -55,6 +56,8 @@ module.exports.getProducts = async (req, res) => {
 module.exports.getProductById = async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).select({ photo: 0 }).populate('category', 'name');
+    const comment = await Comment.find({ productId: productId }).populate('user', 'name');
+    console.log("Comment", comment);
     if (!product) return res.status(404).send("Product not found!")
     return res.status(200).send(product);
 
