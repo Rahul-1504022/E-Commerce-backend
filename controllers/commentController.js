@@ -10,3 +10,7 @@ module.exports.postComment = async (req, res) => {
     return res.status(200).send("Submit Comment Successfully!");
 
 }
+module.exports.loadComment = async (req, res) => {
+    const comment = await Comment.find({ productId: req.body.productId }).populate('user', 'name');
+    return res.status(200).send(comment);
+}
