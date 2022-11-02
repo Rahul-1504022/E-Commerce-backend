@@ -57,9 +57,9 @@ module.exports.getProductById = async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId).select({ photo: 0 }).populate('category', 'name');
     const comment = await Comment.find({ productId: productId }).populate('user', 'name');
-    if (!comment) {
-        console.log("Comment");
-    }
+    // if (!comment) {
+    //     console.log("Comment");
+    // }
     if (!product) return res.status(404).send("Product not found!")
     return res.status(200).send(product);
 
