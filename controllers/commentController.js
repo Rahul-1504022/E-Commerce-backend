@@ -11,6 +11,7 @@ module.exports.postComment = async (req, res) => {
 
 }
 module.exports.loadComment = async (req, res) => {
-    const comment = await Comment.find({ productId: req.body.productId }).populate('user', 'name');
+    const productId = req.params.id;
+    const comment = await Comment.find({ productId: productId }).populate('user', 'name');
     return res.status(200).send(comment);
 }
