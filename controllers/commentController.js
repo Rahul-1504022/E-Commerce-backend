@@ -12,16 +12,14 @@ module.exports.postComment = async (req, res) => {
     let newRating = new Rating(productRating);
     await newComment.save(); //save new comment
     await newRating.save(); //save rating
+
+    let calculateRating = await Rating.find({ productId: req.body.productId });
     return res.status(200).send({
-        req_body: req.body
+        calculateRating: calculateRating,
+        // ratingLength: ratingLength,
+        // ratingSum: ratingSum,
+        // finalRating: finalRating,
     })
-    // let calculateRating = Rating.find({ productId: req.body.productId });
-    // return res.status(200).send({
-    //     calculateRating: calculateRating,
-    //     // ratingLength: ratingLength,
-    //     // ratingSum: ratingSum,
-    //     // finalRating: finalRating,
-    // })
     // calculateRating = calculateRating.map(item => parseInt(item.rating));
     // const ratingLength = calculateRating.length;
     // let ratingSum = calculateRating.reduce((ratingSum, rating) => ratingSum + rating, 0);
