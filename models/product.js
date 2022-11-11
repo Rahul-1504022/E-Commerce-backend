@@ -15,7 +15,8 @@ module.exports.Product = new model('Product', Schema({
     photo: {
         data: Buffer, //convert photo into binary
         contentType: String,
-    }
+    },
+    rating: Number,
 }, { timestamps: true }));
 
 //validate user input
