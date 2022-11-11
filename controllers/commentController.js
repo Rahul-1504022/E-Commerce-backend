@@ -14,18 +14,12 @@ module.exports.postComment = async (req, res) => {
     await newRating.save(); //save rating
 
     let calculateRating = await Rating.find({ productId: req.body.productId });
-    return res.status(200).send({
-        calculateRating: calculateRating,
-        // ratingLength: ratingLength,
-        // ratingSum: ratingSum,
-        // finalRating: finalRating,
-    })
-    // calculateRating = calculateRating.map(item => parseInt(item.rating));
-    // const ratingLength = calculateRating.length;
-    // let ratingSum = calculateRating.reduce((ratingSum, rating) => ratingSum + rating, 0);
-    // const finalRating = (ratingSum / ratingLength).toFixed(2);
-    // await Product.updateOne({ _id: req.body.productId }, { rating: finalRating });
-    // return res.status(200).send("Submit Comment Successfully!");
+    calculateRating = calculateRating.map(item => parseInt(item.rating));
+    const ratingLength = calculateRating.length;
+    let ratingSum = calculateRating.reduce((ratingSum, rating) => ratingSum + rating, 0);
+    const finalRating = (ratingSum / ratingLength).toFixed(2);
+    await Product.updateOne({ _id: req.body.productId }, { rating: finalRating });
+    return res.status(200).send("Submit Comment Successfully!");
 
 }
 module.exports.loadComment = async (req, res) => {
