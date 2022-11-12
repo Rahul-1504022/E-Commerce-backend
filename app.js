@@ -12,6 +12,7 @@ const cartRouter = require('./routers/cartRouter');
 const profileRouter = require('./routers/profileRouter');
 const paymentRouter = require('./routers/paymentRouter');
 const commentRouter = require('./routers/commentRouter');
+const orderHistoryRouter = require('./routers/orderHistoryRouter');
 
 app.use(express.json());//convert to json format
 app.use(cors());
@@ -30,6 +31,7 @@ app.use('/api/cart', cartRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/payment', paymentRouter);
 app.use('/api/comment', commentRouter);
+app.use('/api/getOrderHistory', orderHistoryRouter);
 //using middleware for promise return type error handling
 //use it after router function 
 app.use(error);
