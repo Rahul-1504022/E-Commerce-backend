@@ -16,7 +16,9 @@ const orderHistoryRouter = require('./routers/orderHistoryRouter');
 const authGoogleRouter = require('./routers/authGoogleRouter');
 
 app.use(express.json());//convert to json format
-app.use(cors());
+app.use(cors({
+    origin: "*",
+}));
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
