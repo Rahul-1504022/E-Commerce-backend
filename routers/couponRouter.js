@@ -7,7 +7,9 @@ const { createNewCoupon, getCoupon, deleteCoupon } = require('../controllers/cou
 router.route('/')
     .post([authorize, admin], createNewCoupon)
     .get([authorize, admin], getCoupon)
-    .delete([authorize, admin], deleteCoupon)
 
+
+router.route('/:id')
+    .delete([authorize, admin], deleteCoupon)
 
 module.exports = router;

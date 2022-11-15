@@ -13,6 +13,7 @@ module.exports.getCoupon = async (req, res) => {
 }
 
 module.exports.deleteCoupon = async (req, res) => {
-    await Coupon.deleteOne({ _id: req.body._id })
+    const couponId = req.params.id;
+    await Coupon.deleteOne({ _id: couponId })
     return res.status(200).send("Delete Coupon SuccessFully")
 }
