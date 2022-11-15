@@ -14,6 +14,7 @@ const paymentRouter = require('./routers/paymentRouter');
 const commentRouter = require('./routers/commentRouter');
 const orderHistoryRouter = require('./routers/orderHistoryRouter');
 const authGoogleRouter = require('./routers/authGoogleRouter');
+const couponRouter = require('./routers/couponRouter');
 
 app.use(express.json());//convert to json format
 app.use(cors({
@@ -36,6 +37,7 @@ app.use('/api/payment', paymentRouter);
 app.use('/api/comment', commentRouter);
 app.use('/api/getOrderHistory', orderHistoryRouter);
 app.use('/api/auth/google', authGoogleRouter);
+app.use('/api/coupon', couponRouter);
 //using middleware for promise return type error handling
 //use it after router function 
 app.use(error);
