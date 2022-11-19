@@ -42,9 +42,10 @@ module.exports.initPayment = async (req, res) => {
     if (saveCoupon) {
         finalAmount = saveCoupon.amount;
     } else {
+        const cartItems = await CartItem.find({ user: userID });
         finalAmount = cartItems.map(item => item.count * item.price).reduce((a, b) => a + b, 0);
     }
-    const cartItems = await CartItem.find({ user: userID });
+    // const cartItems = await CartItem.find({ user: userID });
     // let total_amount = cartItems.map(item => item.count * item.price).reduce((a, b) => a + b, 0);
     const total_amount = finalAmount;
     const total_item = cartItems.map(item => item.count).reduce((a, b) => a + b, 0);
