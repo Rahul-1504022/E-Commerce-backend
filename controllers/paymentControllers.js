@@ -5,6 +5,7 @@ const { Profile } = require('../models/profile');
 const { Order } = require('../models/order');
 const { Payment } = require('../models/payment');
 const path = require('path');
+const { Usedcoupon } = require('../models/usedCoupon');
 
 //Request a Session
 //Payment Process
@@ -36,8 +37,14 @@ module.exports.ipn = async (req, res) => {
 
 module.exports.initPayment = async (req, res) => {
     const userID = req.user._id;
+    const saveCoupon = await Usedcoupon.findOne({ userId: userID });
+    let discountAmount = 0;
+    if (saveCoupon) {
+        discountAmount = saveCoupon.amount;
+    }
     const cartItems = await CartItem.find({ user: userID });
-    const total_amount = cartItems.map(item => item.count * item.price).reduce((a, b) => a + b, 0);
+    let total_amount = cartItems.map(item => item.count * item.price).reduce((a, b) => a + b, 0);
+    total_amount = total_amount - discountAmount;
     const total_item = cartItems.map(item => item.count).reduce((a, b) => a + b, 0);
     const tran_id = '_' + Math.random().toString(36).substr(2, 9) + (new Date()).getTime();
 
