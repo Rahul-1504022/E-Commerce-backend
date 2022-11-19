@@ -39,6 +39,7 @@ module.exports.initPayment = async (req, res) => {
     const userID = req.user._id;
     const saveCoupon = await Usedcoupon.findOne({ userId: userID });
     let finalAmount = saveCoupon.amount;
+    await Usedcoupon.deleteOne({ userId: userID });
     const cartItems = await CartItem.find({ user: userID });
     // let total_amount = cartItems.map(item => item.count * item.price).reduce((a, b) => a + b, 0);
     const total_amount = finalAmount;
