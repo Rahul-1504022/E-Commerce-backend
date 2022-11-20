@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
 require('../config/authGoogleConfig');
+const path = require('path');
 
 //(When user click the button)
 router.route('/')
