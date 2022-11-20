@@ -9,8 +9,7 @@ const _ = require('lodash');
 const strategy = new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID, //google provided client id
     clientSecret: process.env.GOOGLE_CLIENT_SECRET, //google provided secret key
-    // callbackURL: "https://desolate-retreat-72840.herokuapp.com/api/auth/google/redirect"
-    callbackURL: "http://localhost:3000/home"
+    callbackURL: "https://desolate-retreat-72840.herokuapp.com/api/auth/google/redirect"
 }, async (accessToken, refreshToken, profile, cb) => {
     //console.log(profile._json.email);
     let user = await SocialLoginUser.findOne({ googleId: profile.id, email: profile._json.email });
