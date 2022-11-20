@@ -10,7 +10,7 @@ router.route('/')
 //  (When google redirect)
 router.route('/redirect')
     .get(passport.authenticate("google", { session: false }), (req, res) => {
-        res.status(200).send(req.user); //user is a by default attribute
+        return res.status(200).send(req.user); //user is a by default attribute
         // res.sendFile(path.join(__basedir, "public/loginSuccess.html"));
     })
 
