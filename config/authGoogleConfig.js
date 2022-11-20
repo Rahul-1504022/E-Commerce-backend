@@ -21,7 +21,7 @@ const strategy = new GoogleStrategy({
             user: _.pick(user, ["email", "_id", "name"]),
             token: token,
         }
-        cb(null, response); //cb(error,response)
+        return cb(null, response); //cb(error,response)
     } else {
         user = new SocialLoginUser({ googleId: profile.id, email: profile._json.email, name: profile._json.name });
         await user.save();
@@ -31,7 +31,7 @@ const strategy = new GoogleStrategy({
             token: token,
             user: _.pick(user, ['_id', 'name', 'email']),
         }
-        cb(null, response);
+        return cb(null, response);
         //console.log("New User Created!");
     }
 })
