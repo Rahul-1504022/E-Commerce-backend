@@ -15,16 +15,13 @@ router.route('/redirect')
         // res.sendFile(path.join(__basedir, "public/loginSuccess.html"));
         if (req.user) {
             res.writeHead(301, {
-                Location: `http://localhost:3000/user/${req.user.token}`
+                Location: `http://localhost:3000/sociallogin/${req.user.token}`
             }).end();
         } else {
             res.writeHead(400, {
                 Location: `http://localhost:3000/login`
             }).end();
         }
-        // res.writeHead(301, {
-        //     Location: `http://localhost:3000/home`
-        // }).end();
     })
 
 module.exports = router;
