@@ -37,7 +37,7 @@ app.use('/api/comment', commentRouter);
 app.use('/api/getOrderHistory', orderHistoryRouter);
 app.use('/api/auth/google', authGoogleRouter);
 app.use('/api/coupon', couponRouter);
-app.use('api/search', searchRouter);
+app.use('/api/search', searchRouter);
 //using middleware for promise return type error handling
 //use it after router function 
 app.use(error);
