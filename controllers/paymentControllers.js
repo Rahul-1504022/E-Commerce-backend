@@ -31,7 +31,7 @@ module.exports.ipn = async (req, res) => {
 
         //Order Validation API
         axios.get(`https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${payment.val_id}&store_id=${process.env.STORE_ID}&store_passwd=${process.env.STORE_PASSWORD}&format=json`)
-            .then(response => console.log(response))
+            .then(response => response.data.status)
             .catch(error => console.log(error));
     }
 
