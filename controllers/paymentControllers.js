@@ -7,6 +7,7 @@ const { Payment } = require('../models/payment');
 const path = require('path');
 const { Usedcoupon } = require('../models/usedCoupon');
 const { Product } = require('../models/product');
+const axios = require('axios');
 
 //Request a Session
 //Payment Process
@@ -27,6 +28,11 @@ module.exports.ipn = async (req, res) => {
 
         }
         await CartItem.deleteMany(order.cartItems);
+
+        //Order Validation API
+        axios.get(`https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${payment.val_id}&store_id=${process.env.STORE_ID}&store_passwd=${process.env.STORE_PASSWORD}&format=json`)
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
     }
 
     else if (payment['status'] === "FAILED") {
