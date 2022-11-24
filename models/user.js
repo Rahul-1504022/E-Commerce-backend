@@ -19,6 +19,8 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
+        minlength: 5,
+        maxlength: 1024
     },
     role: {
         type: String,
@@ -46,6 +48,7 @@ const validateUser = (user) => {
     const schema = Joi.object({
         name: Joi.string().min(3).max(100).required(),
         email: Joi.string().min(5).max(255).required(),
+        password: Joi.string().min(5).max(1024),
     });
     return schema.validate(user);
 }
