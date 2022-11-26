@@ -12,27 +12,27 @@ const strategy = new FacebookStrategy({
     callbackURL: "https://desolate-retreat-72840.herokuapp.com/api/auth/facebook/redirect",
     profileFields: ['id', 'displayName', 'email']
 }, async (accessToken, refreshToken, profile, cb) => {
-    console.log(profile);
-    // let user = await User.findOne({ facebookId: profile.id });
-    // if (user) {
-    //     //console.log("User Exist!");
-    //     const token = user.generateJWT();
-    //     const response = {
-    //         message: "Registration Successful!",
-    //         token: token,
-    //     }
-    //     return cb(null, response); //cb(error,response)
-    // } else {
-    //     user = new User({ facebookId: profile.id, email: profile._json.email, name: profile.displayName });
-    //     await user.save();
-    //     const token = user.generateJWT();
-    //     const response = {
-    //         message: "Login Successful!",
-    //         token: token,
-    //     }
-    //     return cb(null, response);
-    //     //console.log("New User Created!");
-    // }
+    // console.log(profile);
+    let user = await User.findOne({ facebookId: profile._json.id, email: profile._json.email });
+    if (user) {
+        //console.log("User Exist!");
+        const token = user.generateJWT();
+        const response = {
+            message: "Registration Successful!",
+            token: token,
+        }
+        return cb(null, response); //cb(error,response)
+    } else {
+        user = new User({ facebookId: profile._json.id, email: profile._json.email, name: profile._json.name });
+        await user.save();
+        const token = user.generateJWT();
+        const response = {
+            message: "Login Successful!",
+            token: token,
+        }
+        return cb(null, response);
+        //console.log("New User Created!");
+    }
 })
 
 passport.use(strategy);
