@@ -6,7 +6,7 @@ require('../config/authFacebookConfig');
 
 //(When user click the button)
 router.route('/')
-    .get(passport.authenticate("facebook"))
+    .get(passport.authenticate("facebook", { scope: "email" }))
 
 //  (When facebook redirect)
 router.route('/redirect')
