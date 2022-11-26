@@ -9,7 +9,8 @@ const _ = require('lodash');
 const strategy = new FacebookStrategy({
     clientID: process.env.FB_CLIENT_ID, //google provided client id
     clientSecret: process.env.FB_CLIENT_SECRET, //google provided secret key
-    callbackURL: "https://desolate-retreat-72840.herokuapp.com/api/auth/facebook/redirect"
+    callbackURL: "https://desolate-retreat-72840.herokuapp.com/api/auth/facebook/redirect",
+    profileFields: ['id', 'displayName', 'email']
 }, async (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
     // let user = await User.findOne({ facebookId: profile.id });
