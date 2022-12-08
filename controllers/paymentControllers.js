@@ -73,10 +73,10 @@ module.exports.initPayment = async (req, res) => {
 
     // Set the urls
     payment.setUrls({
-        success: "https://desolate-retreat-72840.herokuapp.com/api/payment/success", // If payment Succeed
-        fail: "https://desolate-retreat-72840.herokuapp.com/api/payment/failed", // If payment failed
-        cancel: "https://desolate-retreat-72840.herokuapp.com/api/payment/cancel", // If user cancel payment
-        ipn: "https://desolate-retreat-72840.herokuapp.com/api/payment/ipn", // SSLCommerz will send http post request in this link
+        success: "https://e-commerce-backend-yb11.onrender.com/api/payment/success", // If payment Succeed
+        fail: "https://e-commerce-backend-yb11.onrender.com/api/payment/failed", // If payment failed
+        cancel: "https://e-commerce-backend-yb11.onrender.com/api/payment/cancel", // If user cancel payment
+        ipn: "https://e-commerce-backend-yb11.onrender.com/api/payment/ipn", // SSLCommerz will send http post request in this link
     });
 
     // Set order details
